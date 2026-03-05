@@ -87,7 +87,12 @@ erDiagram
    ```
 4. Start the app:
    ```bash
-   uvicorn app.main:app --reload
+uv run uvicorn app.main:app --reload
+
+or
+   source .venv/bin/activate
+uvicorn app.main:app --reload
+
    ```
 
 ## Using the API
