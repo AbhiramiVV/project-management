@@ -1,0 +1,522 @@
+{
+  "info": {
+    "_postman_id": "8aed48e6-f3a5-4b48-a5dc-191b86216795",
+    "name": "Project-management'",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "31741811",
+    "_collection_link": "https://go.postman.co/collection/31741811-8aed48e6-f3a5-4b48-a5dc-191b86216795?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "create user",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Soya\",\n  \"email\": \"soya@gmail.com\",\n  \"role\": \"admin\",\n  \"password\": \"soya@123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/users",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "users"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "create user example",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Soya\",\n  \"email\": \"soya@gmail.com\",\n  \"role\": \"admin\",\n  \"password\": \"soya@123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "date",
+              "value": "Thu, 05 Mar 2026 18:05:47 GMT"
+            },
+            {
+              "key": "server",
+              "value": "uvicorn"
+            },
+            {
+              "key": "content-length",
+              "value": "185"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-process-time",
+              "value": "0.33824706077575684"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"name\": \"Soya\",\n    \"email\": \"soya@gmail.com\",\n    \"role\": \"admin\",\n    \"id\": \"8d180750-9501-4779-afe0-cce099810c39\",\n    \"created_at\": \"2026-03-05T12:35:47.712448Z\",\n    \"updated_at\": \"2026-03-05T12:35:47.712453Z\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "username",
+              "value": "abhirami@gmail.com",
+              "type": "text",
+              "uuid": "7d828cd8-ccbf-4e69-b3b7-779e89ee85c4"
+            },
+            {
+              "key": "password",
+              "value": "abhirami@123",
+              "type": "text",
+              "uuid": "a7aae88a-4adf-4409-9574-4fb1d2d767a9"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8000/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get profile ",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzMyMDUwNDcsInN1YiI6IjJhMWUwOTVlLTk4MTAtNDM0YS04NDllLWNlYmJiMWFlZDcxOSJ9.X044EAq_M70QKE5uo3phcgUdDdLplkDd2HLHi-IPj8o",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/users/me",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "users",
+            "me"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get users",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzMyMDUwNDcsInN1YiI6IjJhMWUwOTVlLTk4MTAtNDM0YS04NDllLWNlYmJiMWFlZDcxOSJ9.X044EAq_M70QKE5uo3phcgUdDdLplkDd2HLHi-IPj8o",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\": \"Website Revamp\",\r\n \"description\": \"Update the landing page\"\r\n }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/projects",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "projects"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create project",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzMyMDUwNDcsInN1YiI6IjJhMWUwOTVlLTk4MTAtNDM0YS04NDllLWNlYmJiMWFlZDcxOSJ9.X044EAq_M70QKE5uo3phcgUdDdLplkDd2HLHi-IPj8o",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Website Revamp\",\r\n \"description\": \"Update the landing page\"\r\n }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/projects",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "projects"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get project",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzMyMDUwNDcsInN1YiI6IjJhMWUwOTVlLTk4MTAtNDM0YS04NDllLWNlYmJiMWFlZDcxOSJ9.X044EAq_M70QKE5uo3phcgUdDdLplkDd2HLHi-IPj8o",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://localhost:8000/projects",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "projects"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update project",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzMyMDUwNDcsInN1YiI6IjJhMWUwOTVlLTk4MTAtNDM0YS04NDllLWNlYmJiMWFlZDcxOSJ9.X044EAq_M70QKE5uo3phcgUdDdLplkDd2HLHi-IPj8o",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Website Revamp\",\r\n \"description\": \"Update the landing page and content\"\r\n }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/projects/{3a7fcddc-9213-4fe9-9c51-95735583850d}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "projects",
+            "{3a7fcddc-9213-4fe9-9c51-95735583850d}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete project",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzMyMDUwNDcsInN1YiI6IjJhMWUwOTVlLTk4MTAtNDM0YS04NDllLWNlYmJiMWFlZDcxOSJ9.X044EAq_M70QKE5uo3phcgUdDdLplkDd2HLHi-IPj8o",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://localhost:8000/projects/{64cc3103-c6a6-48ff-ae68-c2e938a99e67}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "projects",
+            "{64cc3103-c6a6-48ff-ae68-c2e938a99e67}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create tasks",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzMyMDUwNDcsInN1YiI6IjJhMWUwOTVlLTk4MTAtNDM0YS04NDllLWNlYmJiMWFlZDcxOSJ9.X044EAq_M70QKE5uo3phcgUdDdLplkDd2HLHi-IPj8o",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"Build Homepage\",\r\n  \"description\": \"Create the main landing page using the new design system.\",\r\n  \"due_date\": \"2026-03-15T18:00:00.000Z\",\r\n  \"project_id\": \"ebf2b5d3-1d19-4d04-b72c-dd16a6b6c4b9\",\r\n  \"assigned_to\": \"2a1e095e-9810-434a-849e-cebbb1aed719\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/tasks",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "tasks"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get tasks",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzMyMDUwNDcsInN1YiI6IjJhMWUwOTVlLTk4MTAtNDM0YS04NDllLWNlYmJiMWFlZDcxOSJ9.X044EAq_M70QKE5uo3phcgUdDdLplkDd2HLHi-IPj8o",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/tasks",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "tasks"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "task assign",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzMyMDUwNDcsInN1YiI6IjJhMWUwOTVlLTk4MTAtNDM0YS04NDllLWNlYmJiMWFlZDcxOSJ9.X044EAq_M70QKE5uo3phcgUdDdLplkDd2HLHi-IPj8o",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"assigned_to\": \"dfdc1cc3-9ff0-47e9-85ac-e623b74f35cb\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/tasks/{f8a7051d-83fb-4fad-b337-de66cf4a1e37}/assign",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "tasks",
+            "{f8a7051d-83fb-4fad-b337-de66cf4a1e37}",
+            "assign"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update task status",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzMyMDUwNDcsInN1YiI6IjJhMWUwOTVlLTk4MTAtNDM0YS04NDllLWNlYmJiMWFlZDcxOSJ9.X044EAq_M70QKE5uo3phcgUdDdLplkDd2HLHi-IPj8o",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"status\": \"pending\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/tasks/{f8a7051d-83fb-4fad-b337-de66cf4a1e37}/status",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "tasks",
+            "{f8a7051d-83fb-4fad-b337-de66cf4a1e37}",
+            "status"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "health",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzMyMDUwNDcsInN1YiI6IjJhMWUwOTVlLTk4MTAtNDM0YS04NDllLWNlYmJiMWFlZDcxOSJ9.X044EAq_M70QKE5uo3phcgUdDdLplkDd2HLHi-IPj8o",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "health"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
