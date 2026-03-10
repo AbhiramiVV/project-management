@@ -12,9 +12,9 @@ COPY . .
 RUN uv pip install --system -e .
 
 # Make startup script executable.
-RUN chmod +x /app/scripts/start-app.sh
+RUN chmod +x /app/scripts/start-app-unix.sh
 
 EXPOSE 8000
 
 # Run migrations then start the application.
-CMD ["/app/scripts/start-app.sh"]
+CMD ["/app/scripts/start-app-unix.sh"]

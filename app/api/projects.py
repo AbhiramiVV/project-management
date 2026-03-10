@@ -1,9 +1,9 @@
-from fastapi import APIRouter, Depends
+from typing import List, Optional
+from fastapi import APIRouter, Depends, Query
 from sqlalchemy.ext.asyncio import AsyncSession
-from typing import List
 from uuid import UUID
 from app.db.database import get_db
-from app.schemas.schemas import ProjectCreate, ProjectUpdate, ProjectRead
+from app.schemas.schemas import ProjectCreate, ProjectUpdate, ProjectRead, ProjectPaginated
 from app.services.project_service import ProjectService
 from app.api.dependencies import get_current_admin_user, get_current_user
 from app.models.user import User
@@ -18,14 +18,15 @@ async def create_project(
 ) -> ProjectRead:
     return await ProjectService.create_project(db, project_in, current_user.id)
 
-@router.get("", response_model=List[ProjectRead])
+@router.get("", response_model=ProjectPaginated)
 async def read_projects(
-    skip: int = 0,
-    limit: int = 100,
+    q: Optional[str] = Query(None),
+    skip: int = Query(0, ge=0),
+    limit: int = Query(20, ge=1, le=100),
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user)
-) -> List[ProjectRead]:
-    return await ProjectService.get_projects(db, skip=skip, limit=limit)
+) -> dict:
+    return await ProjectService.get_projects(db, q=q, skip=skip, limit=limit)
 
 @router.put("/{project_id}", response_model=ProjectRead)
 async def update_project(

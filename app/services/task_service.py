@@ -3,6 +3,7 @@ from typing import List, Optional
 from uuid import UUID
 from app.repositories.task import task_repo
 from app.models.task import Task, TaskStatus
+from app.models.user import User, UserRole
 from app.schemas.schemas import TaskCreate, TaskUpdateStatus, TaskAssign
 from app.core.exceptions import EntityNotFoundError, ForbiddenError
 from app.services.project_service import ProjectService
@@ -25,15 +26,31 @@ class TaskService:
     @staticmethod
     async def get_tasks(
         db: AsyncSession, 
+        current_user: User,
         project_id: Optional[UUID] = None, 
         assigned_to: Optional[UUID] = None, 
         status: Optional[TaskStatus] = None,
+        q: Optional[str] = None,
         skip: int = 0, 
         limit: int = 100
-    ) -> List[Task]:
-        return await task_repo.get_filtered(
-            db, project_id=project_id, assigned_to=assigned_to, status=status, skip=skip, limit=limit
+    ) -> dict:
+        # If user is a developer, they can only see tasks assigned to them
+        if current_user.role == UserRole.developer:
+            assigned_to = current_user.id
+            
+        tasks = await task_repo.get_filtered(
+            db, project_id=project_id, assigned_to=assigned_to, status=status, q=q, skip=skip, limit=limit
         )
+        total = await task_repo.count_filtered(
+            db, project_id=project_id, assigned_to=assigned_to, status=status, q=q
+        )
+        
+        return {
+            "items": tasks,
+            "total": total,
+            "page": (skip // limit) + 1,
+            "size": limit
+        }
 
     @staticmethod
     async def get_task(db: AsyncSession, task_id: UUID) -> Task:

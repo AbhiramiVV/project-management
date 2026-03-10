@@ -1,5 +1,5 @@
 from sqlalchemy.ext.asyncio import AsyncSession
-from typing import List
+from typing import List, Optional
 from uuid import UUID
 from app.repositories.user import user_repo
 from app.models.user import User
@@ -20,5 +20,12 @@ class UserService:
         return await user_repo.create(db, obj_in=user_data)
 
     @staticmethod
-    async def get_users(db: AsyncSession, skip: int = 0, limit: int = 100) -> List[User]:
-        return await user_repo.get_multi(db, skip=skip, limit=limit)
+    async def get_users(db: AsyncSession, q: Optional[str] = None, skip: int = 0, limit: int = 100) -> dict:
+        users = await user_repo.get_multi_filtered(db, q=q, skip=skip, limit=limit)
+        total = await user_repo.count_filtered(db, q=q)
+        return {
+            "items": users,
+            "total": total,
+            "page": (skip // limit) + 1,
+            "size": limit
+        }

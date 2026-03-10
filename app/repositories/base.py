@@ -1,7 +1,7 @@
 from typing import Any, Generic, Type, TypeVar, Optional, List
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
-from sqlalchemy import update, delete
+from sqlalchemy import update, delete, func
 from pydantic import BaseModel
 from app.models.base import Base
 from uuid import UUID
@@ -21,6 +21,10 @@ class BaseRepository(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
     async def get_multi(self, db: AsyncSession, *, skip: int = 0, limit: int = 100) -> List[ModelType]:
         result = await db.execute(select(self.model).offset(skip).limit(limit))
         return list(result.scalars().all())
+
+    async def count(self, db: AsyncSession) -> int:
+        result = await db.execute(select(func.count()).select_from(self.model))
+        return result.scalar() or 0
 
     async def create(self, db: AsyncSession, *, obj_in: CreateSchemaType | dict) -> ModelType:
         obj_in_data = obj_in if isinstance(obj_in, dict) else obj_in.model_dump(exclude_unset=True)

@@ -70,3 +70,22 @@ class Token(BaseModel):
 class LoginRequest(BaseModel):
     email: EmailStr
     password: str
+
+from typing import TypeVar, Generic, List
+
+T = TypeVar("T")
+
+class PaginatedResponse(BaseModel, Generic[T]):
+    items: List[T]
+    total: int
+    page: int
+    size: int
+
+class UserPaginated(PaginatedResponse[UserRead]):
+    pass
+
+class ProjectPaginated(PaginatedResponse[ProjectRead]):
+    pass
+
+class TaskPaginated(PaginatedResponse[TaskRead]):
+    pass
