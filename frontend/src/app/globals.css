@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --theme-peach: #e2bca4;
+  --theme-blue-deep: #013a7c;
+  --theme-blue-bright: #0066ff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: #0d346e;
+  background-image:
+    radial-gradient(at 0% 0%, #3e88d0 0, transparent 40%),
+    radial-gradient(at 50% 0%, #1c5ba9 0, transparent 60%),
+    radial-gradient(at 100% 0%, #4490dc 0, transparent 40%),
+    radial-gradient(at 50% 50%, #0d3b7d 0, #031c3f 100%);
+  background-attachment: fixed;
+  color: white;
+  font-family: inherit;
+}
+
+@layer components {
+  .glass-card {
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+
+  .input-icon-group {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border-bottom: 1px solid white;
+    padding: 0.5rem 0;
+    margin-bottom: 2.5rem;
+    width: 100%;
+  }
+
+  .input-field {
+    background-color: transparent;
+    color: white;
+    padding: 0.5rem 1rem;
+    outline: none;
+    flex: 1;
+    font-weight: 300;
+    font-size: 1.125rem;
+  }
+
+  .input-field::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .blue-btn {
+    width: 100%;
+    background-color: #013a7c;
+    color: white;
+    font-weight: 700;
+    padding: 1.5rem;
+    border-radius: 0;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .blue-btn:hover {
+    background-color: #012d61;
+  }
+}
